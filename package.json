@@ -1,0 +1,25 @@
+{
+  "name": "internship-log",
+  "version": "1.0.0",
+  "description": "ระบบบันทึกการฝึกงาน สำหรับนักศึกษาและครูนิเทศ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/69319010016-beep/internship-log.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/69319010016-beep/internship-log/issues"
+  },
+  "homepage": "https://github.com/69319010016-beep/internship-log#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
