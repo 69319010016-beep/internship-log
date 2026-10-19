@@ -6,6 +6,10 @@ const PORT = 3000;
 
 app.use(express.json());
 
+// ข้อมูลฝึกงานตัวอย่าง เก็บในหน่วยความจำ
+let internships = [];
+let nextId = 1;
+
 // ตรวจสอบว่า API ทำงานหรือไม่
 app.get('/api', (req, res) => {
   res.json({
@@ -14,16 +18,43 @@ app.get('/api', (req, res) => {
   });
 });
 
-// แสดงรายการบันทึกการฝึกงาน
+// ดูรายการบันทึกการฝึกงานทั้งหมด
 app.get('/api/internships', (req, res) => {
   res.json({
     message: 'รายการบันทึกการฝึกงาน',
-    data: []
+    total: internships.length,
+    data: internships
   });
 });
 
+// เพิ่มบันทึกการฝึกงาน
+app.post('/api/internships', (req, res) => {
+  const { studentName, company, workDate, details } = req.body;
+
+  if (!studentName || !company || !workDate || !details) {
+    return res.status(400).json({
+      message: 'กรุณากรอก studentName, company, workDate และ details ให้ครบ'
+    });
+  }
+
+  const internship = {
+    id: nextId++,
+    studentName,
+    company,
+    workDate,
+    details,
+    createdAt: new Date().toISOString()
+  };
+
+  internships.push(internship);
+
+  res.status(201).json({
+    message: 'บันทึกข้อมูลฝึกงานสำเร็จ',
+    data: internship
+  });
+});
+
+// เปิดเซิร์ฟเวอร์
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-
-
